@@ -1,0 +1,245 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #fbf7f1;
+  --surface: #ffffff;
+  --surface-2: #f5eee4;
+  --text: #2a2420;
+  --muted: #74685e;
+  --border: #ebe1d4;
+
+  --primary: #d9731a;
+  --primary-hover: #bd6113;
+  --primary-soft: #fcebd9;
+  --accent: #2f5d46;
+  --accent-soft: #e3efe8;
+
+  --success: #2e7d4f;
+  --success-soft: #e2f3e8;
+  --danger: #c0392b;
+  --danger-soft: #fbe6e3;
+  --warning: #b7791f;
+  --warning-soft: #fdf1dc;
+
+  --shadow-sm: 0 1px 2px rgba(60, 40, 20, 0.06), 0 1px 3px rgba(60, 40, 20, 0.08);
+  --shadow-md: 0 6px 18px rgba(60, 40, 20, 0.08);
+  --shadow-lg: 0 18px 40px rgba(60, 40, 20, 0.14);
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --container: 1200px;
+  --nav-height: 72px;
+  --transition: 0.2s ease;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #16130f;
+  --surface: #211c17;
+  --surface-2: #2a241e;
+  --text: #f3ece3;
+  --muted: #b2a597;
+  --border: #3a322a;
+
+  --primary: #f0903a;
+  --primary-hover: #f5a35a;
+  --primary-soft: #3d2a18;
+  --accent: #7fc4a0;
+  --accent-soft: #1f3329;
+
+  --success: #5cc98a;
+  --success-soft: #1b3326;
+  --danger: #f0776a;
+  --danger-soft: #3a1f1c;
+  --warning: #f0b95a;
+  --warning-soft: #3a2e17;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.5);
+
+  color-scheme: dark;
+}
+
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--nav-height) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--transition), color var(--transition);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.5em;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1,
+h2 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2rem, 4.5vw, 3.25rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+h3 { font-size: 1.125rem; }
+h4 { font-size: 1rem; }
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+code {
+  background: var(--surface-2);
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 55%, transparent);
+  outline-offset: 2px;
+}
+
+/* ---------- Layout helpers ---------- */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section.container {
+  padding: 80px 24px;
+}
+
+.section-sm {
+  padding: 40px 0;
+}
+
+.section-sm.container {
+  padding: 40px 24px;
+}
+
+.section-tinted {
+  background: var(--surface-2);
+}
+
+.muted { color: var(--muted); }
+.small { font-size: 0.875rem; }
+.text-accent { color: var(--primary); }
+.text-success { color: var(--success); font-weight: 600; }
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 640px) {
+  .container,
+  .section.container,
+  .section-sm.container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section,
+  .section.container {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
